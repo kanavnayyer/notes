@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_20dp"
+    app:cardCornerRadius="@dimen/_16dp"
+    app:cardElevation="@dimen/_10dp"
+
+    android:backgroundTint="@color/black"
+    android:background="@drawable/dialog_background">
+
+    <LinearLayout
+       style="@style/laybar"
+        
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            style="@style/imgdialog"
+            android:src="@drawable/baseline_info_outline_24"
+            android:layout_gravity="center"
+            android:background="@color/blak"
+            android:layout_marginBottom="@dimen/_10dp" />
+
+        <TextView
+            style="@style/buttonsstyl"
+            android:text="@string/save_changes"
+            android:textSize="@dimen/_16dp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_20dp" />
+
+        <LinearLayout
+            style="@style/laybar"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_no"
+                style="@style/buttonsstyl"
+                android:layout_weight="1"
+                android:text="@string/discard"
+                android:background="@drawable/square_button"
+                app:backgroundTint="@color/red" />
+
+            <Button
+                android:id="@+id/btn_yes"
+                style="@style/buttonsstyl"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_10dp"
+                android:text="@string/save"
+                android:background="@drawable/square_button"
+                app:backgroundTint="@color/green" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

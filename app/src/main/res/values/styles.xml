@@ -51,5 +51,17 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <style name="imgdialog">
+        <item name="android:layout_width">@dimen/_60dp</item>
+        <item name="android:layout_height">@dimen/_60dp</item>
+
+
+    </style>
+    <style name="recystyle">
+        <item name="android:layout_width">@dimen/_0dp</item>
+        <item name="android:layout_height">@dimen/_0dp</item>
+
+
+    </style>
 
 </resources>

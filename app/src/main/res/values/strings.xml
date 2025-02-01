@@ -9,4 +9,9 @@
     <string name="emptynotesline">Create your first note !</string>
     <string name="_notes">NOTES</string>
     <string name="descriptionbox">Type Something here...</string>
+    <string name="search_notes">Search notes...</string>
+    <string name="notfoundfile">File not found. Try searching again.</string>
+    <string name="discard">discard</string>
+    <string name="save">save</string>
+    <string name="save_changes">save changes?</string>
 </resources>

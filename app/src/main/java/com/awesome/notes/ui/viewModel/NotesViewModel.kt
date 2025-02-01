@@ -36,5 +36,9 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
+    fun updateNote(note: Note) {
+        viewModelScope.launch {
+            noteRepository.update(note)
+        }
+    }
 }
