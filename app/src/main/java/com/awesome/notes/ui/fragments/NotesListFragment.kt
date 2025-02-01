@@ -73,10 +73,11 @@ class NotesListFragment : Fragment() {
 
         checkEmptyState()
     }
+        checkEmptyState()
 }
     private fun checkEmptyState() {
 
-        binding.emptyStateLayout.isVisible = notesAdapter.itemCount<1
+        binding.emptyStateLayout.isVisible = notesAdapter.itemCount==0
     }
 
     private fun setupRecyclerView() {
