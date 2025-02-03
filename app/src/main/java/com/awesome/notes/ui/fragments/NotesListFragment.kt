@@ -14,10 +14,7 @@ import com.awesome.notes.R
 import com.awesome.notes.databinding.FragmentNotesListBinding
 import com.awesome.notes.datta.entities.Note
 import com.awesome.notes.ui.adapter.NotesAdapter
-
-
 import com.awesome.notes.ui.viewModel.NotesViewModel
-
 
 class NotesListFragment : Fragment() {
 
@@ -25,14 +22,12 @@ class NotesListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var notesAdapter: NotesAdapter
-    private var notesList: MutableList<Note> = mutableListOf()
-
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNotesListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,79 +36,72 @@ class NotesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 
-        viewModel.allNotes.observe(viewLifecycleOwner, Observer {
-
-            notesAdapter.updateData(it)
-        })
         setupRecyclerView()
-
-
-
-
-
-
-
+        observeNotes()
+        checkEmptyState()
 
         setFragmentResultListener("note_saved") { _, bundle ->
             val title = bundle.getString("noteTitle")
             val description = bundle.getString("noteDescription")
-            val position = bundle.getInt("notePosition", -1)
+            val noteId = bundle.getLong("noteId", -1L)
 
-            if (position != -1) {
-
-                updateNoteAtPosition(Note(title ?: "", description ?: ""), position)
+            if (noteId != -1L) {
+                // Update existing note
+                viewModel.updateNote(Note(title ?: "", description ?: "", noteId))
             } else if (title != null) {
-
-                addNote(Note(title, description ?: ""))
+                // Insert new note
+                viewModel.insert(Note(title, description ?: ""))
             }
         }
 
         binding.fabAddNote.setOnClickListener {
-            navToEdit(Note("", ""), -1)
+            openEditFragment(null)  // Open blank fragment to create a new note
+        }
 
-        checkEmptyState()
+        binding.fabSearch.setOnClickListener {
+            openSearchFragment()
+        }
     }
-}
-    private fun checkEmptyState() {
 
-        binding.emptyStateLayout.isVisible = notesAdapter.itemCount<1
+    private fun observeNotes() {
+        viewModel.allNotes.observe(viewLifecycleOwner, Observer { notes ->
+            notesAdapter.updateData(notes)
+            checkEmptyState()
+        })
+    }
+
+    private fun checkEmptyState() {
+        binding.emptyStateLayout.isVisible = notesAdapter.itemCount == 0
     }
 
     private fun setupRecyclerView() {
-        notesAdapter = NotesAdapter(notesList, requireActivity(),viewModel)
+        notesAdapter = NotesAdapter(mutableListOf(), requireActivity(), viewModel)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = notesAdapter
         }
     }
 
-    fun navToEdit(note: Note, position: Int) {
+    private fun openEditFragment(note: Note?) {
         val editNoteFragment = EditNoteFragment().apply {
             arguments = Bundle().apply {
-                putString("noteTitle", note.title)
-                putString("noteDescription", note.description)
-                putInt("notePosition", position)
+                putLong("noteId", note?.id ?: -1L)
+                putString("noteTitle", note?.title ?: "")
+                putString("noteDescription", note?.description ?: "")
             }
         }
-
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, editNoteFragment)
             .addToBackStack(null)
             .commit()
     }
 
-
-    fun addNote(note: Note) {
-viewModel.insert(note)
-//       notesList.add(note)
-//        notesAdapter.notifyItemInserted(notesList.size - 1)
-        checkEmptyState()
-    }
-
-
-    fun updateNoteAtPosition(updatedNote: Note, position: Int) {
-        notesList[position] = updatedNote
-        notesAdapter.notifyItemChanged(position)
+    private fun openSearchFragment() {
+        val searchFragment = SearchFragment()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {
