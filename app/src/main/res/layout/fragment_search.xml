@@ -3,52 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchfragLay"
     android:layout_width="match_parent"
-    android:padding="@dimen/_20sp"
-    android:background="@color/black"
     android:layout_height="match_parent"
+    android:background="@color/black"
+    android:padding="@dimen/_20sp"
     tools:context=".ui.fragments.SearchFragment">
 
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:id="@+id/searchLay"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        android:hint="@string/search_notes"
-        app:hintTextColor="@color/white"
+        android:layout_height="50dp"
+        android:background="@drawable/search_bar_bg"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/_16dp">
+        android:layout_margin="@dimen/_16dp"
+        android:paddingHorizontal="12dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+
+        <EditText
             android:id="@+id/searchView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/search_notes"
+            android:fontFamily="@font/nunito_semibold"
             android:textColor="@color/white"
-            android:textSize="@dimen/_16sp"
-            android:padding="@dimen/_12dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/whitish"
+            android:padding="10dp"
+            android:inputType="text" />
+
+        <View
+            android:id="@+id/clearButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+android:background="@drawable/baseline_clear_24"
+            />
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
-       style="@style/recystyle"
+        style="@style/recystyle"
         tools:listitem="@layout/item_note"
         app:layout_constraintTop_toBottomOf="@id/searchLay"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/_8dp"/>
+        android:padding="@dimen/_8dp" />
 
+    <!-- Empty State Layout -->
     <LinearLayout
         android:id="@+id/emptyStateLayout"
         style="@style/laybar"
-        app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchLay">
-
 
         <ImageView
             android:id="@+id/backgroundImage"
@@ -56,17 +70,18 @@
             android:layout_gravity="center"
             android:src="@drawable/img" />
 
-
         <TextView
             android:id="@+id/tvTitle"
-
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_310dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/nunito_semibold"
             android:layout_marginTop="@dimen/_32dp"
             android:text="@string/notfoundfile"
+            android:maxLines="1"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/_24sp"
-            android:textStyle="italic" />
+            android:textSize="@dimen/_16sp"
+          />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

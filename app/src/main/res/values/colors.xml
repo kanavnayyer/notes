@@ -3,7 +3,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="buttonblack">#252525</color>
-    <color name="green">#8BC34A</color>
-    <color name="red">#FF5722</color>
+
     <color name="blak">#6B6563</color>
+
+        <color name="pink">#FD99FF</color>
+        <color name="red">#FF9E9E</color>
+        <color name="green">#91F48F</color>
+        <color name="yellow">#FFF599</color>
+        <color name="blue">#9EFFFF</color>
+        <color name="purple">#B69CFF</color>
+    <color name="hintcolor">#9A9A9A</color>
+    <color name="redd">#FF0000</color>
+    <color name="greeen">#30BE71</color>
+    <color name="whitish">#E4E1E1</color>
+
+
 </resources>

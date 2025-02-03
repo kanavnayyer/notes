@@ -25,6 +25,18 @@ class NotesAdapter(
     private val viewModel: NotesViewModel
 ) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
+
+    private val colors by lazy {
+        listOf(
+            ContextCompat.getColor(fragmentActivity, R.color.pink),
+            ContextCompat.getColor(fragmentActivity, R.color.red),
+            ContextCompat.getColor(fragmentActivity, R.color.green),
+            ContextCompat.getColor(fragmentActivity, R.color.yellow),
+            ContextCompat.getColor(fragmentActivity, R.color.blue),
+            ContextCompat.getColor(fragmentActivity, R.color.purple)
+        )
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
@@ -34,7 +46,7 @@ class NotesAdapter(
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
-        holder.bind(note)
+        holder.bind(note, position)
     }
 
     fun updateData(newData: List<Note>) {
@@ -54,7 +66,7 @@ class NotesAdapter(
                 val drawable = ContextCompat.getDrawable(fragmentActivity, R.drawable.baseline_delete_24)
                 drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 
-                binding.root.setBackgroundColor(if (isDeleteMode) Color.RED else getRandomColor())
+                binding.laybar.setBackgroundColor(if (isDeleteMode) Color.RED else getRandomColor(adapterPosition))
 
                 if (isDeleteMode) {
                     val spannableString = SpannableString(" ")
@@ -90,10 +102,13 @@ class NotesAdapter(
             }
         }
 
-        fun bind(note: Note) {
+        fun bind(note: Note, position: Int) {
             binding.tvNoteTitle.text = note.title
             binding.tvNoteContent.text = note.description
-            binding.root.setBackgroundColor(getRandomColor())
+
+
+                binding.laybar.setBackgroundColor(getRandomColor(position))
+
         }
 
         private fun deleteNote(note: Note) {
@@ -122,8 +137,7 @@ class NotesAdapter(
         }
     }
 
-    private fun getRandomColor(): Int {
-        val colors = arrayOf(Color.LTGRAY, Color.MAGENTA, Color.BLUE, Color.GREEN)
-        return colors[Random.nextInt(colors.size)]
+    private fun getRandomColor(position: Int): Int {
+        return colors[position % colors.size]
     }
 }

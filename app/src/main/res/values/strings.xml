@@ -7,11 +7,20 @@
     <string name="note_title">Note Title</string>
     <string name="description">Note content will appear here.</string>
     <string name="emptynotesline">Create your first note !</string>
-    <string name="_notes">NOTES</string>
+    <string name="_notes">Title</string>
     <string name="descriptionbox">Type Something here...</string>
     <string name="search_notes">Search notes...</string>
     <string name="notfoundfile">File not found. Try searching again.</string>
     <string name="discard">discard</string>
     <string name="save">save</string>
     <string name="save_changes">save changes?</string>
+    <string name="savebtn">Are your sure you want discard your changes ?</string>
+    <string name="title_cannot_be_empty">Title cannot be empty</string>
+    <string name="pink">#FD99FF</string>
+    <string name="megenta">#FF9E9E</string>
+    <string name="green">#91F48F</string>
+    <string name="yellow">#FFF599</string>
+    <string name="skyblue">#9EFFFF</string>
+    <string name="purple">#B69CFF</string>
+    <string name="no">no</string>
 </resources>

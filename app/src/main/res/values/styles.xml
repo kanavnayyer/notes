@@ -22,7 +22,7 @@
     <style name="fragbar">
 
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/_50dp</item>
+        <item name="android:layout_height">@dimen/_55dp</item>
     </style>
 
     <style name="laybar">
@@ -40,7 +40,7 @@
     </style>
 
     <style name="imgdefstyl">
-        <item name="android:layout_width">@dimen/_300dp</item>
+        <item name="android:layout_width">@dimen/_310dp</item>
         <item name="android:layout_height">@dimen/_300dp</item>
 
 
@@ -58,10 +58,11 @@
 
     </style>
     <style name="recystyle">
-        <item name="android:layout_width">@dimen/_0dp</item>
-        <item name="android:layout_height">@dimen/_0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
 
 
     </style>
 
+    <dimen name="_55dp">55dp</dimen>
 </resources>

@@ -9,7 +9,7 @@
     tools:context=".ui.fragments.NotesListFragment">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topindexLinlay"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -20,38 +20,46 @@
 
 
         <TextView
-            android:layout_marginTop="@dimen/_10dp"
             style="@style/texts"
-       android:text="@string/notes"
-            android:textColor="@color/white"
-            android:layout_weight="7"/>
+            android:layout_marginTop="@dimen/_10dp"
+         app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="@string/notes"
+            android:textSize="@dimen/_45sp"
+            android:layout_marginStart="@dimen/_20dp"
+            android:textColor="@color/white" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearch"
            style="@style/buttonsstyl"
             android:src="@drawable/baseline_search_24"
-
+app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/add_note"
             app:backgroundTint="@color/buttonblack"
             app:tint="@color/white"
             android:layout_marginEnd="@dimen/_10dp"
+            app:layout_constraintEnd_toStartOf="@+id/fabSave"
             />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSave"
          style="@style/buttonsstyl"
             android:src="@drawable/baseline_info_outline_24"
-
+app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:contentDescription="@string/add_note"
             app:backgroundTint="@color/buttonblack"
             app:tint="@color/white"
-            android:layout_marginRight="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_16dp"
 
             />
 
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/emptyStateLayout"

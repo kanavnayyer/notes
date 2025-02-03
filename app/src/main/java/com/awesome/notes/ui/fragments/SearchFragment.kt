@@ -1,11 +1,13 @@
 package com.awesome.notes.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,7 +49,8 @@ class SearchFragment : Fragment() {
         viewModel.allNotes.observe(viewLifecycleOwner) { notes ->
             allNotes = notes
         }
-
+        binding.emptyStateLayout.setOnClickListener { it.hideKeyboard() }
+binding.searchfragLay.setOnClickListener { it.hideKeyboard() }
         binding.searchView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -71,7 +74,10 @@ class SearchFragment : Fragment() {
 
         binding.emptyStateLayout.isVisible = filteredList.isEmpty()
     }
-
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

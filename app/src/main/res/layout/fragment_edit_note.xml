@@ -3,34 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="@dimen/_20dp"
+    android:id="@+id/layeditnote"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".ui.fragments.EditNoteFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topindexLinlay"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/_25dp"
         style="@style/fragbar"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="@dimen/_20dp"
         android:orientation="horizontal">
 
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
             android:src="@drawable/baseline_arrow_back_ios_24"
-
+app:layout_constraintStart_toStartOf="parent"
+            
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/add_note"
             app:backgroundTint="@color/buttonblack"
             app:tint="@color/white"
-            android:layout_marginStart="10dp"
-android:layout_marginEnd="150dp"
+
+
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,52 +42,69 @@ android:layout_marginEnd="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_remove_red_eye_24"
-
             android:contentDescription="@string/add_note"
+
+            app:layout_constraintEnd_toStartOf="@id/fabSave"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+
+            android:layout_marginEnd="@dimen/_10dp"
             app:backgroundTint="@color/buttonblack"
             app:tint="@color/white"
-android:layout_marginEnd="10dp"
             />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_save_24"
-
+app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_10dp"
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/add_note"
             app:backgroundTint="@color/buttonblack"
             app:tint="@color/white"
 
+
             />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_300dp">
+    android:layout_height="wrap_content"
+    >
 
 
-        <EditText
-            android:id="@+id/edittitle"
-     style="@style/editfragsz"
-            android:textSize="@dimen/_20sp"
-            android:textColor="@color/white"
-            android:hint="@string/_notes"
-            android:textColorHint="@color/white"
-            />
+    <EditText
+        android:id="@+id/edittitle"
+        style="@style/editfragsz"
+        android:fontFamily="@font/nunito_semibold"
+        android:hint="@string/_notes"
+        android:textColor="@color/white"
+        android:maxLines="4"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@null"
+        android:textColorHint="@color/hintcolor"
+        android:textSize="@dimen/_45sp"
+        android:layout_marginBottom="@dimen/_5dp"/>
 </ScrollView>
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <EditText
         android:id="@+id/editdescriptionNote"
         style="@style/editfragsz"
 
-        android:textSize="@dimen/_20sp"
+        android:textSize="@dimen/_25sp"
         android:textColor="@color/white"
 
-        android:textColorHint="@color/white"
+        android:fontFamily="@font/nunito_semibold"
+        android:maxLines="10"
+        android:background="@null"
+        android:textColorHint="@color/hintcolor"
 
         android:hint="@string/descriptionbox"/>
 </ScrollView>
